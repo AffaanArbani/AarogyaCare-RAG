@@ -86,10 +86,13 @@ print(f"REDIS_DB = {REDIS_DB}")
 print(f"REDIS_PASSWORD_SET = {REDIS_PASSWORD is not None}")
 print("=" * 50)
 
-redis_client = redis.Redis(
-    host=REDIS_HOST,
-    port=REDIS_PORT,
-    password=REDIS_PASSWORD,
-    db=REDIS_DB,
+REDIS_URL = os.getenv("REDIS_URL")
+
+print("=" * 50)
+print(f"REDIS_URL_SET = {REDIS_URL is not None}")
+print("=" * 50)
+
+redis_client = redis.from_url(
+    REDIS_URL,
     decode_responses=True
 )
