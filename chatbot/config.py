@@ -31,9 +31,11 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 PINECONE_INDEX = os.getenv("PINECONE_INDEX")
 
-REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
-REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
-REDIS_DB = int(os.getenv("REDIS_DB", 0))
+# Works for both Local and Railway
+REDIS_HOST = os.getenv("REDIS_HOST") or os.getenv("REDISHOST") or "localhost"
+REDIS_PORT = int(os.getenv("REDIS_PORT") or os.getenv("REDISPORT") or 6379)
+REDIS_DB = int(os.getenv("REDIS_DB") or os.getenv("REDISDB") or 0)
+REDIS_PASSWORD = os.getenv("REDIS_PASSWORD")
 
 EMBEDDING_MODEL_NAME = os.getenv(
     "EMBEDDING_MODEL",
@@ -77,16 +79,17 @@ pinecone_index = pinecone.Index(
 # Connect to Redis
 # ==========================================================
 
-
 print("=" * 50)
 print(f"REDIS_HOST = {REDIS_HOST}")
 print(f"REDIS_PORT = {REDIS_PORT}")
 print(f"REDIS_DB = {REDIS_DB}")
+print(f"REDIS_PASSWORD_SET = {REDIS_PASSWORD is not None}")
 print("=" * 50)
 
 redis_client = redis.Redis(
     host=REDIS_HOST,
     port=REDIS_PORT,
+    password=REDIS_PASSWORD,
     db=REDIS_DB,
     decode_responses=True
 )
