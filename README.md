@@ -8,8 +8,8 @@ AarogyaCare is a Retrieval-Augmented Generation (RAG) based healthcare chatbot t
 
 | Service | Link |
 |----------|------|
-| Application | *Coming Soon* |
-| API Documentation | *Coming Soon* |
+| Application | https://aarogya-care.up.railway.app/ |
+
 
 ---
 
