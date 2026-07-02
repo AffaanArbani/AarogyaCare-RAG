@@ -26,6 +26,11 @@ API_URL = os.getenv(
     "http://127.0.0.1:8000"
 )
 
+print("=" * 50)
+print(f"API_URL = '{API_URL}'")
+print(f"CHAT_URL = '{API_URL}/chat'")
+print("=" * 50)
+
 # ============================================
 # Session State
 # ============================================
