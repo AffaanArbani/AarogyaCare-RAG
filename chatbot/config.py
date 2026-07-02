@@ -77,6 +77,13 @@ pinecone_index = pinecone.Index(
 # Connect to Redis
 # ==========================================================
 
+
+print("=" * 50)
+print(f"REDIS_HOST = {REDIS_HOST}")
+print(f"REDIS_PORT = {REDIS_PORT}")
+print(f"REDIS_DB = {REDIS_DB}")
+print("=" * 50)
+
 redis_client = redis.Redis(
     host=REDIS_HOST,
     port=REDIS_PORT,
