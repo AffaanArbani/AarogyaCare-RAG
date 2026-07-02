@@ -2,6 +2,7 @@
 Frontend for the AarogyaCare RAG Chatbot.
 """
 
+import os
 import uuid
 import requests
 import streamlit as st
@@ -14,6 +15,15 @@ st.set_page_config(
     page_title="AarogyaCare",
     page_icon="🩺",
     layout="wide"
+)
+
+# ============================================
+# Backend URL
+# ============================================
+
+API_URL = os.getenv(
+    "BACKEND_URL",
+    "http://127.0.0.1:8000"
 )
 
 # ============================================
@@ -39,7 +49,7 @@ with st.sidebar:
     if st.button("New Conversation", use_container_width=True):
 
         requests.delete(
-            f"http://127.0.0.1:8000/chat/{st.session_state.session_id}"
+            f"{API_URL}/chat/{st.session_state.session_id}"
         )
 
         st.session_state.messages = []
@@ -70,10 +80,11 @@ st.caption("AI-powered Healthcare Assistant")
 for message in st.session_state.messages:
 
     with st.chat_message(message["role"]):
-
         st.markdown(message["content"])
 
-# User input
+# ============================================
+# User Input
+# ============================================
 
 prompt = st.chat_input("Type your message...")
 
@@ -95,7 +106,7 @@ if prompt:
 
             response = requests.post(
 
-                "http://127.0.0.1:8000/chat",
+                f"{API_URL}/chat",
 
                 json={
                     "session_id": st.session_state.session_id,
@@ -104,7 +115,13 @@ if prompt:
 
             )
 
-            answer = response.json()["response"]
+            if response.status_code == 200:
+
+                answer = response.json()["response"]
+
+            else:
+
+                answer = f"Error: {response.status_code}\n\n{response.text}"
 
             st.markdown(answer)
 
