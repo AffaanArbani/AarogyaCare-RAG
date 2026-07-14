@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 # AarogyaCare – AI-Powered Healthcare RAG Chatbot
 
 AarogyaCare is a Retrieval-Augmented Generation (RAG) based healthcare chatbot that provides contextual information about medical conditions using a curated medical knowledge base. Instead of relying solely on a Large Language Model, the chatbot retrieves relevant medical information through semantic search and combines it with Google's Gemini model to generate accurate, natural, and context-aware responses.
@@ -8,7 +15,7 @@ AarogyaCare is a Retrieval-Augmented Generation (RAG) based healthcare chatbot t
 
 | Service | Link |
 |----------|------|
-| Application | https://aarogya-care.up.railway.app/ |
+| Application | Currently Offline (Free trial Ended)|
 
 
 ---
